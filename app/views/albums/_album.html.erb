@@ -1,0 +1,16 @@
+<div id="<%= dom_id album %>">
+  <p>
+    <strong>Title:</strong>
+    <%= album.title %>
+  </p>
+
+  <%= album.body %>
+  <br>
+  <% if album.image.content_type.in?(%w[image/jpeg image/png])%>
+  <%= link_to image_tag(album.image_as_thumbnail),album.image if album.image.attached?%>
+  <% end %>
+  <hr>
+  <% album.pictures.each do |picture|%>
+    <%= link_to image_tag(album.picture_as_thumbnail(picture)), picture %>
+  <% end %>
+</div>
